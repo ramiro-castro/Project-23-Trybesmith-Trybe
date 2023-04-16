@@ -20,3 +20,9 @@ export interface LoginInterface {
   username: string
   password: string
 }
+
+export interface OrderInterface {
+  id: number
+  userId: number
+  productsId: number[]
+}
