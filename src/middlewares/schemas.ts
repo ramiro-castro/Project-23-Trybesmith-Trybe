@@ -10,7 +10,15 @@ const addProduct = Joi.object({
   amount: Joi.string().required().min(3),
 });
 
+const addUser = Joi.object({
+  username: Joi.string().required().min(3),
+  vocation: Joi.string().required().min(3),
+  level: Joi.number().required().min(1),
+  password: Joi.string().required().min(8),
+});
+
 export default {
   addUserPassword,
   addProduct,
+  addUser,
 };
