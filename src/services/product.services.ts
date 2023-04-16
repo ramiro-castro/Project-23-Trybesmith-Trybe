@@ -1,5 +1,5 @@
 import connection from '../models/connection';
-import { ProductInterface } from '../interfaces/product.interface';
+import { ProductInterface } from '../interfaces/all.interfaces';
 import ProductModels from '../models/product.models';
 
 class ProductServices {

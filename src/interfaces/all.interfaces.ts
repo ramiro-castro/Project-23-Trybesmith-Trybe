@@ -4,3 +4,14 @@ export interface ProductInterface {
   amount: string
   orderId?: number
 }
+
+export interface UserInterface {
+  id?: number
+  username: string
+  vocation: string
+  level: number
+}
+
+export interface UserConfidentialInterface extends UserInterface {
+  password: string
+}
