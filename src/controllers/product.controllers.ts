@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import validationsInputValues from '../middlewares/validationsInputValues';
 import ProductServices from '../services/product.services';
 import statusCodes from '../utils/statusCodes';
 
@@ -14,6 +15,19 @@ class ProductControllers {
   async create(req: Request, res: Response): Promise<void> {
     try {
       const product = req.body;
+
+      const checkName = validationsInputValues.validateNameData(product);
+      if (checkName.type) {
+        res.status(checkName.type).json({ message: checkName.message });
+        return;
+      }
+
+      const checkAmount = validationsInputValues.validateAmountData(product);
+      if (checkAmount.type) {
+        res.status(checkAmount.type).json({ message: checkAmount.message });
+        return;
+      }
+
       const data = await this.productServices.create(product);
       res.status(statusCodes.CREATED).json(data);
     } catch (error) {
