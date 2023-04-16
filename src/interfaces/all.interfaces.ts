@@ -15,3 +15,8 @@ export interface UserInterface {
 export interface UserConfidentialInterface extends UserInterface {
   password: string
 }
+
+export interface LoginInterface {
+  username: string
+  password: string
+}

@@ -9,11 +9,6 @@ class UserServices {
   constructor() {
     this.model = new UserModels(connection);
   }
-
-  //   async getAll(): Promise<ProductInterface[]> {
-  //     const data = await this.model.getAll();
-  //     return data;
-  //   }
   
   async create(user: UserConfidentialInterface): Promise<UserConfidentialInterface> {
     const data = await this.model.create(user);

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import UserServices from '../services/user.services';
 import createJWT from '../utils/createJWT';
 import statusCodes from '../utils/statusCodes';
+// import validationsInputValues from '../middlewares/validationsInputValues';
 
 const jwtSecret = process.env.JWT_SECRET || 'secret';
 
@@ -10,7 +11,6 @@ class UserControllers {
 
   constructor(userServices = new UserServices()) {
     this.userServices = userServices;
-    // this.getAll = this.getAll.bind(this);
     this.create = this.create.bind(this);
   }
 
@@ -25,15 +25,6 @@ class UserControllers {
       res.status(statusCodes.SERVER_ERROR).json({ error });
     }
   }
-
-//   async getAll(_req: Request, res: Response): Promise<void> {
-//     try {
-//       const data = await this.productServices.getAll();
-//       res.status(statusCodes.OK).json(data);
-//     } catch (error) {
-//       res.status(statusCodes.SERVER_ERROR).json({ error });
-//     }
-//   }
 }
 
 export default UserControllers;

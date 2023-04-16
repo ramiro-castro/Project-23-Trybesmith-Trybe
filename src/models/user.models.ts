@@ -18,14 +18,6 @@ class UserModels {
     const { insertId } = dataInserted;
     return { id: insertId, ...user };
   }
-
-//   async getAll(): Promise<ProductInterface[]> {
-//     const data = await this.connection.execute(
-//       'SELECT * FROM Trybesmith.products',
-//     );
-//     const [rows] = data;
-//     return rows as ProductInterface[];
-//   }
 }
 
 export default UserModels;
