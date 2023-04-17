@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import { OrderInterface } from '../interfaces/all.interfaces';
 import connection from './connection';
 
@@ -15,6 +15,16 @@ const OrdersModels = {
     const [rows] = data;
     return rows as OrderInterface[];
     // return data as OrderInterface[];
+  },
+
+  async create(userId: number) {
+    const [result] = await connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?);',
+      [userId],
+    );
+    console.log(result);
+    const { insertId: id } = result;
+    return { id, userId };
   },
 
 };

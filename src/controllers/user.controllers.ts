@@ -5,7 +5,7 @@ import createJWT from '../utils/createJWT';
 import statusCodes from '../utils/statusCodes';
 // import validationsInputValues from '../middlewares/validationsInputValues';
 
-const jwtSecret = process.env.JWT_SECRET || 'secret';
+// const jwtSecret = process.env.JWT_SECRET || 'secret';
 
 class UserControllers {
   userServices: UserServices;
@@ -26,8 +26,9 @@ class UserControllers {
       }
 
       const dataUser = await this.userServices.create(user);
+      console.log(dataUser);
       const { id, username } = dataUser;
-      const token = createJWT({ id, username }, jwtSecret);
+      const token = await createJWT({ id, username });
       res.status(statusCodes.CREATED).json({ token });
     } catch (error) {
       res.status(statusCodes.SERVER_ERROR).json({ error });

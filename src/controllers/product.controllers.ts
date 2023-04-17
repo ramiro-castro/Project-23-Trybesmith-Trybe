@@ -3,15 +3,7 @@ import validationsInputValues from '../middlewares/validationsInputValues';
 import ProductServices from '../services/product.services';
 import statusCodes from '../utils/statusCodes';
 
-class ProductControllers {
-  productServices: ProductServices;
-
-  constructor(productServices = new ProductServices()) {
-    this.productServices = productServices;
-    this.getAll = this.getAll.bind(this);
-    this.create = this.create.bind(this);
-  }
-
+const ProductControllers = {
   async create(req: Request, res: Response): Promise<void> {
     try {
       const product = req.body;
@@ -28,21 +20,21 @@ class ProductControllers {
         return;
       }
 
-      const data = await this.productServices.create(product);
+      const data = await ProductServices.create(product);
       res.status(statusCodes.CREATED).json(data);
     } catch (error) {
       res.status(statusCodes.SERVER_ERROR).json({ error });
     }
-  }
+  },
 
   async getAll(_req: Request, res: Response): Promise<void> {
     try {
-      const data = await this.productServices.getAll();
+      const data = await ProductServices.getAll();
       res.status(statusCodes.OK).json(data);
     } catch (error) {
       res.status(statusCodes.SERVER_ERROR).json({ error });
     }
-  }
-}
+  },
+};
 
 export default ProductControllers;

@@ -4,8 +4,6 @@ import createJWT from '../utils/createJWT';
 import statusCodes from '../utils/statusCodes';
 import validationsInputValues from '../middlewares/validationsInputValues';
 
-const jwtSecret = process.env.JWT_SECRET || 'secret';
-
 const LoginControllers = {
 
   async login(req: Request, res: Response) {
@@ -21,8 +19,9 @@ const LoginControllers = {
         res.status(statusCodes.UNAUTHORIZED).json({ message: 'Username or password invalid' });
         return;
       }
-      const { username } = dataUser;
-      const token = await createJWT(username, jwtSecret);
+      const { id, username } = dataUser;
+      const token = await createJWT({ id, username });
+      //   console.log(token);
       res.status(statusCodes.OK).json({ token });
     } catch (error) {
       res.status(statusCodes.SERVER_ERROR).json({ error });

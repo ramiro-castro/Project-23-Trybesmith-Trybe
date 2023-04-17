@@ -26,3 +26,22 @@ export interface OrderInterface {
   userId: number
   productsId: number[]
 }
+
+export interface UpdateProductInterface {
+  orderId: number
+  id: number
+}
+
+export interface AuxToken {
+  id?: number
+  username?: string
+}
+
+export interface UserJwt {
+  payload: {
+    id: number;
+    username: string;
+  };
+  iat: number;
+  exp: number;
+}

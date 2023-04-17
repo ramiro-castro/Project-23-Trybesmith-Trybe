@@ -4,11 +4,7 @@ const jwtConfig: Jwt.SignOptions = {
   expiresIn: '12h',
   algorithm: 'HS256',
 };
-
-const createJWT = async (payload: unknown, jwtSecret: string): Promise<string> => {
-  const token = Jwt.sign({ data: payload }, jwtSecret, jwtConfig);
-
-  return token;
-};
+const jwtSecret = process.env.JWT_SECRET || 'secret';
+const createJWT = async (payload: object) => Jwt.sign({ payload }, jwtSecret, jwtConfig);
 
 export default createJWT;

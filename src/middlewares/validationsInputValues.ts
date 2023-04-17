@@ -1,3 +1,4 @@
+import Jwt from 'jsonwebtoken';
 import schemas from './schemas';
 import statusCodes from '../utils/statusCodes';
 
@@ -163,6 +164,49 @@ const auxValidateUser = (userData: undefined) => {
   }
   return { type: null, message: '' };
 };
+
+// const decryptToken = async (token: string) => {
+//   const secret = 'secret';
+//   //   console.log('entrei no decrypt');
+  
+//   const decoded = Jwt.verify(token, secret);
+//   if (typeof decoded === 'string') return null;
+
+//   return decoded.payload;
+// };
+
+const decryptToken = async (token: string) => {
+  const secret = 'secret';
+
+  const checkToken = Jwt.verify(token, secret, (err, decoded) => {
+    if (err) {
+      return null;
+    } 
+    return decoded;
+  });
+  console.log(checkToken);
+  
+  return checkToken;
+};
+
+const validateProductsIds = (productsIds: Array<number>) => {
+  if (!productsIds) {
+    return { type: statusCodes.BAD_REQUEST, message: '"productsIds" is required' };
+  }
+
+  if (!Array.isArray(productsIds)) {
+    return { type: statusCodes.UNPROCESSABLE_CONTENT, message: '"productsIds" must be an array' };
+  }
+
+  if (productsIds.length === 0) {
+    return { 
+      type: statusCodes.UNPROCESSABLE_CONTENT,
+      message: '"productsIds" must include only numbers' };
+  }
+
+  return { type: null, message: '' };
+};
+
 export default {
   validateLoginData,
   validateNameData,
@@ -172,4 +216,6 @@ export default {
   validatePassword,
   validateLevel,
   auxValidateUser,
+  decryptToken,
+  validateProductsIds,
 };
