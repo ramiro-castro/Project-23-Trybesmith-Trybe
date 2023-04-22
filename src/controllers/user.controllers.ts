@@ -6,6 +6,7 @@ import statusCodes from '../utils/statusCodes';
 
 class UserControllers {
   userServices: UserServices;
+  // no user.controllers mantive o constructor e o metodo bind, porem nos outros removi, ja que estava apresentando um erro com a conexao do banco de dados.
 
   constructor(userServices = new UserServices()) {
     this.userServices = userServices;
