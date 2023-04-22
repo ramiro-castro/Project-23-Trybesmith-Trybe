@@ -174,7 +174,6 @@ const decryptToken = async (token: string) => {
     } 
     return decoded;
   });
-  console.log(checkToken);
   
   return checkToken;
 };

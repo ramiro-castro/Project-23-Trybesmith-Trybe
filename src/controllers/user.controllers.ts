@@ -24,7 +24,6 @@ class UserControllers {
       }
 
       const dataUser = await this.userServices.create(user);
-      console.log(dataUser);
       const { id, username } = dataUser;
       const token = await createJWT({ id, username });
       res.status(statusCodes.CREATED).json({ token });
