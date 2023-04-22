@@ -22,17 +22,17 @@ const ProductModels = {
     const [rows] = data;
     return rows as ProductInterface[];
   },
-  // ATENCAO AQUI
 
   async getById(id: number): Promise<ProductInterface | null> {
-    const query = 'SELECT name, amount FROM Trybesmith.Products WHERE id=?';
-    const [data] = await connection.execute(query, [id]);
+    const [data] = await connection.execute(
+      'SELECT name, amount FROM Trybesmith.Products WHERE id=?;',
+      [id],
+    );
     const [product] = data as ProductInterface[];
     return product || null;
   },
 
   async updateProduct(product: object) {
-    // console.log(product);
     const { orderId, id } = product as UpdateProductInterface;
     
     await connection.execute(

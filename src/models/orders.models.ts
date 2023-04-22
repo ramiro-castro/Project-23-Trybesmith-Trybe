@@ -11,10 +11,8 @@ const OrdersModels = {
        ON o.id = p.order_id
        GROUP BY o.id`,
     );
-    console.log(data);
     const [rows] = data;
     return rows as OrderInterface[];
-    // return data as OrderInterface[];
   },
 
   async create(userId: number) {
@@ -22,7 +20,6 @@ const OrdersModels = {
       'INSERT INTO Trybesmith.orders (user_id) VALUES (?);',
       [userId],
     );
-    console.log(result);
     const { insertId: id } = result;
     return { id, userId };
   },
