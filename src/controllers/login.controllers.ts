@@ -21,7 +21,6 @@ const LoginControllers = {
       }
       const { id, username } = dataUser;
       const token = await createJWT({ id, username });
-      //   console.log(token);
       res.status(statusCodes.OK).json({ token });
     } catch (error) {
       res.status(statusCodes.SERVER_ERROR).json({ error });

@@ -3,9 +3,6 @@ import validationsInputValues from '../middlewares/validationsInputValues';
 import UserServices from '../services/user.services';
 import createJWT from '../utils/createJWT';
 import statusCodes from '../utils/statusCodes';
-// import validationsInputValues from '../middlewares/validationsInputValues';
-
-// const jwtSecret = process.env.JWT_SECRET || 'secret';
 
 class UserControllers {
   userServices: UserServices;
