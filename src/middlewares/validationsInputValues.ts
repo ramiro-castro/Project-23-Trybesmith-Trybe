@@ -165,16 +165,6 @@ const auxValidateUser = (userData: undefined) => {
   return { type: null, message: '' };
 };
 
-// const decryptToken = async (token: string) => {
-//   const secret = 'secret';
-//   //   console.log('entrei no decrypt');
-  
-//   const decoded = Jwt.verify(token, secret);
-//   if (typeof decoded === 'string') return null;
-
-//   return decoded.payload;
-// };
-
 const decryptToken = async (token: string) => {
   const secret = 'secret';
 
